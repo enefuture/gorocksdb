@@ -1,7 +1,7 @@
 package gorocksdb
 
+// #include <stdlib.h>
 // #include "rocksdb/c.h"
-// #include "gorocksdb.h"
 import "C"
 
 // BlockBasedTableOptions represents block-based table options.
