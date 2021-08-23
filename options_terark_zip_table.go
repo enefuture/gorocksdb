@@ -8,6 +8,8 @@
 
 package gorocksdb
 
+// #include "rocksdb/c.h"
+// #include "gorocksdb.h"
 import "C"
 
 // BlockBasedTableOptions represents block-based table options.
