@@ -1,11 +1,3 @@
-/**
- * @Author: weilai
- * @Description:
- * @File:  options_terark_zip_table.go
- * @Version: 1.0.0
- * @Date: 2021/8/12 5:03 下午
- */
-
 package gorocksdb
 
 // #include "rocksdb/c.h"
