@@ -2,6 +2,7 @@ package gorocksdb
 
 // #include "rocksdb/c.h"
 import "C"
+import "unsafe"
 
 // BlockBasedTableOptions represents block-based table options.
 type TerarkZipTableOptions struct {
@@ -24,7 +25,9 @@ func (opts *TerarkZipTableOptions) Destroy() {
 }
 
 func (opts *TerarkZipTableOptions) SetLocalTempDir(tempDir string) {
-	C.rocksdb_terark_zip_options_set_local_temp_dir(opts.c, tempDir)
+	cTempDir := C.CString(tempDir)
+	defer C.free(unsafe.Pointer(cTempDir))
+	C.rocksdb_terark_zip_options_set_local_temp_dir(opts.c, cTempDir)
 }
 
 func (opts *TerarkZipTableOptions) SetIndexNestLevel(indexNestLevel int32) {
