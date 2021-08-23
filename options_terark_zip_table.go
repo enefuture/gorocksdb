@@ -24,7 +24,7 @@ func (opts *TerarkZipTableOptions) Destroy() {
 }
 
 func (opts *TerarkZipTableOptions) SetLocalTempDir(tempDir string) {
-	C.rocksdb_terark_zip_options_set_local_temp_dir(opts.c, &tempDir)
+	C.rocksdb_terark_zip_options_set_local_temp_dir(opts.c, tempDir)
 }
 
 func (opts *TerarkZipTableOptions) SetIndexNestLevel(indexNestLevel int32) {
@@ -36,5 +36,5 @@ func (opts *TerarkZipTableOptions) SetSampleRatio(sampleRatio float64) {
 }
 
 func (opts *TerarkZipTableOptions) SetTerarkZipMinLevel(minLevel int) {
-	C.rocksdb_terark_zip_options_set_terark_zip_min_level(opts.c, C.size_t(minLevel))
+	C.rocksdb_terark_zip_options_set_terark_zip_min_level(opts.c, C.int(minLevel))
 }
