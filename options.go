@@ -76,6 +76,8 @@ type Options struct {
 	// Hold references for GC.
 	env  *Env
 	bbto *BlockBasedTableOptions
+	//TerarkDb zip
+	tzto *TerarkZipTableOptions
 
 	// We keep these so we can free their memory in Destroy.
 	ccmp *C.rocksdb_comparator_t
@@ -1151,6 +1153,12 @@ func (opts *Options) SetBlockBasedTableFactory(value *BlockBasedTableOptions) {
 	C.rocksdb_options_set_block_based_table_factory(opts.c, value.c)
 }
 
+// SetTerarkZipTableFactory sets the block based table factory.
+func (opts *Options) SetTerarkZipTableFactory(value *TerarkZipTableOptions) {
+	opts.tzto = value
+	C.rocksdb_options_set_terark_zip_table_factory(opts.c, value.c)
+}
+
 // SetAllowIngestBehind sets allow_ingest_behind
 // Set this option to true during creation of database if you want
 // to be able to ingest behind (call IngestExternalFile() skipping keys
@@ -1210,4 +1218,5 @@ func (opts *Options) Destroy() {
 	opts.c = nil
 	opts.env = nil
 	opts.bbto = nil
+	opts.tzto = nil
 }
